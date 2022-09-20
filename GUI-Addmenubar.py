@@ -475,10 +475,13 @@ table_member.bind('<Button-3>',lambda event : member_rcmenu.post(event.x_root,ev
 
 def SearchName():
     select = table_member.selection()
-    name = table_member.item(select)['values'][1]
-    print('name',name)
-    url = 'https://www.google.com/search?q={}'.format(name)
-    webbrowser.open(str(url))
+    if len(select) != 0: 
+        name = table_member.item(select)['values'][1]
+        print('name',name)
+        url = 'https://www.google.com/search?q={}'.format(name)
+        webbrowser.open(str(url))
+    else:
+        messagebox.showwarning('คุณไม่ได้เลือกรายการ','กรุณาเลือกรายการที่ต้องการค้นหา')
 member_rcmenu.add_command(label='Search Name',command = SearchName)
 
 BEdit.state(['disabled'])
